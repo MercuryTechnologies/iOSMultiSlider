@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 
-  s.name         = "MultiSlider"
+  s.name         = "iOSMultiSlider"
   s.version      = "1.13.1"
   s.summary      = "UISlider clone with multiple thumbs and values, optional snap intervals, optional value labels."
 
-  s.homepage     = "https://github.com/yonat/MultiSlider"
+  s.homepage     = "https://github.com/MercuryTechnologies/iOSMultiSlider"
   s.screenshots  = ["https://raw.githubusercontent.com/yonat/MultiSlider/master/Screenshots/MultiSlider.png"]
 
   s.license      = { :type => "MIT", :file => "LICENSE.txt" }
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.weak_framework = 'SwiftUI'
 
-  s.source       = { :git => "https://github.com/yonat/MultiSlider.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/MercuryTechnologies/iOSMultiSlider.git", :tag => s.version }
   s.source_files  = "Sources/*.swift"
 
   s.dependency 'SweeterSwift'
