@@ -115,6 +115,16 @@ open class MultiSlider: UIControl {
         }
     }
 
+    open var numberTicks: Int = 0 {
+        didSet {
+            self.tickView.numberTicks = numberTicks
+        }
+    }
+
+    open var thumbViewOffset: CGFloat?
+
+    open var thumbImageSize: CGSize?
+
     @IBInspectable open dynamic var thumbImage: UIImage? {
         didSet {
             thumbViews.forEach { $0.image = thumbImage }
@@ -158,6 +168,8 @@ open class MultiSlider: UIControl {
             )
         }
     }
+
+    open var trackCornerRadius: CGFloat?
 
     @IBInspectable open dynamic var trackWidth: CGFloat = 2 {
         didSet {
@@ -215,7 +227,21 @@ open class MultiSlider: UIControl {
 
     @objc open var thumbViews: [UIImageView] = []
     @objc open var valueLabels: [UITextField] = [] // UILabels are a pain to layout, text fields look nice as-is.
-    @objc open var trackView = UIView()
+    @objc open lazy var trackView = {
+        let view = UIView()
+        tickView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tickView)
+        NSLayoutConstraint.activate([
+            tickView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tickView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tickView.topAnchor.constraint(equalTo: view.topAnchor),
+            tickView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        tickView.numberTicks = self.numberTicks
+        return view
+    }()
+
+    open lazy var tickView = TickView()
     @objc open var outerTrackViews: [UIView] = []
     @objc open var minimumView = UIImageView()
     @objc open var maximumView = UIImageView()

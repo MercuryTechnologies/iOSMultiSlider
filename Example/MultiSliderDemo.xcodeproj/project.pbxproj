@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD551EB16742BBABC5D0A71E /* Pods_MultiSliderDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0F8C92467D76443D27A74D /* Pods_MultiSliderDemo.framework */; };
 		DC64D11323311C5300506A50 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC64D11223311C5300506A50 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DC64D11523311C8F00506A50 /* MultiValueSliderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC64D11423311C8F00506A50 /* MultiValueSliderDemo.swift */; };
 		DC9FAA6D1DDE3EA800FFD2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9FAA6C1DDE3EA800FFD2A1 /* AppDelegate.swift */; };
@@ -31,7 +30,6 @@
 		DC9FAA781DDE3EA800FFD2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCAE152A2181FC7B002B9A25 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		DCAE152B2181FC7B002B9A25 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
-		ED0F8C92467D76443D27A74D /* Pods_MultiSliderDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MultiSliderDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +38,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC64D11323311C5300506A50 /* SwiftUI.framework in Frameworks */,
-				BD551EB16742BBABC5D0A71E /* Pods_MultiSliderDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				DC64D11223311C5300506A50 /* SwiftUI.framework */,
-				ED0F8C92467D76443D27A74D /* Pods_MultiSliderDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -200,14 +196,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MultiSliderDemo/Pods-MultiSliderDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AvailableHapticFeedback/AvailableHapticFeedback.framework",
-				"${BUILT_PRODUCTS_DIR}/MultiSlider/MultiSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSMultiSlider/iOSMultiSlider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AvailableHapticFeedback.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MultiSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SweeterSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSMultiSlider.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -405,7 +401,7 @@
 					"-framework",
 					"\"SweeterSwift\"",
 					"-framework",
-					"\"MultiSlider\"",
+					"\"iOSMultiSlider\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.roysharon.MultiSliderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -425,7 +421,7 @@
 					"-framework",
 					"\"SweeterSwift\"",
 					"-framework",
-					"\"MultiSlider\"",
+					"\"iOSMultiSlider\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.roysharon.MultiSliderDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

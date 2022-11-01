@@ -1,6 +1,6 @@
 
 use_frameworks!
-pod 'MultiSlider', :path => '..'
+pod 'iOSMultiSlider', :path => '..'
 pod 'SwiftQuality', :git => 'https://github.com/yonat/SwiftQuality'
 
 target 'MultiSliderDemo' do

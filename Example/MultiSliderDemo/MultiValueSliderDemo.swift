@@ -7,7 +7,7 @@
 // swiftlint:disable numbers_smell
 #if canImport(SwiftUI)
 
-import MultiSlider
+import iOSMultiSlider
 import SwiftUI
 
 @available(iOS 13.0, *)
@@ -24,8 +24,8 @@ struct MultiValueSliderDemo: View {
                 orientation: .horizontal,
                 outerTrackColor: .lightGray
             )
-                .frame(width: 320)
-                .scaledToFit()
+            .frame(width: 320)
+            .scaledToFit()
 
             MultiValueSlider(
                 value: $tripleValue,
@@ -33,7 +33,7 @@ struct MultiValueSliderDemo: View {
                 valueLabelPosition: .top,
                 orientation: .horizontal
             )
-                .accentColor(.purple)
+            .accentColor(.purple)
 
             HStack {
                 MultiValueSlider(
@@ -45,7 +45,7 @@ struct MultiValueSliderDemo: View {
                     valueLabelFont: .boldSystemFont(ofSize: 20),
                     trackWidth: 12
                 )
-                    .accentColor(.green)
+                .accentColor(.green)
 
                 MultiValueSlider(
                     value: $tripleValue,
@@ -54,10 +54,10 @@ struct MultiValueSliderDemo: View {
                     outerTrackColor: .lightGray,
                     trackWidth: 12
                 )
-                    .thumbTintColor(.blue)
+                .thumbTintColor(.blue)
             }
         }
-            .padding()
+        .padding()
     }
 }
 

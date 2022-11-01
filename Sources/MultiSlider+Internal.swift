@@ -67,6 +67,12 @@ extension MultiSlider {
             }
             addConstrainedSubview(trackView, constrain: .left, .right, centerAttribute)
             trackView.constrain(.height, to: trackWidth)
+            NSLayoutConstraint.activate([
+                tickView.leadingAnchor.constraint(equalTo: trackView.leadingAnchor),
+                tickView.trailingAnchor.constraint(equalTo: trackView.trailingAnchor),
+                tickView.topAnchor.constraint(equalTo: trackView.topAnchor),
+                tickView.bottomAnchor.constraint(equalTo: trackView.bottomAnchor),
+            ])
             trackView.addConstrainedSubview(slideView, constrain: .top, .bottom)
             constrainHorizontalTrackViewToLayoutMargins()
             addConstrainedSubview(minimumView, constrain: .leftMargin, centerAttribute)
@@ -76,15 +82,16 @@ extension MultiSlider {
     }
 
     func setupTrackLayoutMargins() {
-        let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: 2, height: 2)
+        let thumbSize = thumbImageSize ?? ((thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: 2, height: 2))
         let thumbDiameter = orientation == .vertical ? thumbSize.height : thumbSize.width
         let halfThumb = thumbDiameter / 2 - 1 // 1 pixel for semi-transparent boundary
         if orientation == .vertical {
-            trackView.layoutMargins = UIEdgeInsets(top: halfThumb, left: 0, bottom: halfThumb, right: 0)
+            trackView.layoutMargins = UIEdgeInsets(top: halfThumb, left: 0, bottom: halfThumb - 5, right: 0)
             constrain(.width, to: max(thumbSize.width, trackWidth), relation: .greaterThanOrEqual)
         } else {
             trackView.layoutMargins = UIEdgeInsets(top: 0, left: halfThumb, bottom: 0, right: halfThumb)
             constrainHorizontalTrackViewToLayoutMargins()
+
             constrain(.height, to: max(thumbSize.height, trackWidth), relation: .greaterThanOrEqual)
         }
     }
@@ -155,7 +162,12 @@ extension MultiSlider {
         thumbView.applyTint(color: thumbTintColor)
         thumbView.addShadow()
         thumbViews.append(thumbView)
-        slideView.addConstrainedSubview(thumbView, constrain: NSLayoutConstraint.Attribute.center(in: orientation).perpendicularCenter)
+
+        let constraints = slideView.addConstrainedSubview(thumbView,
+                                                          constrain: NSLayoutConstraint.Attribute.center(in: orientation).perpendicularCenter)
+        if let thumbOffset = thumbViewOffset {
+            constraints.first?.constant = thumbOffset
+        }
         positionThumbView(i)
         thumbView.blur(disabledThumbIndices.contains(i))
         addValueLabel(i)
@@ -282,7 +294,60 @@ extension MultiSlider {
     }
 
     func updateTrackViewCornerRounding() {
-        trackView.layer.cornerRadius = hasRoundTrackEnds ? trackWidth / 2 : 1
+        var cornerRadius = 1.0
+        if hasRoundTrackEnds {
+            cornerRadius = trackCornerRadius ?? (trackWidth / 2)
+        }
+        trackView.layer.cornerRadius = cornerRadius
         outerTrackViews.forEach { $0.layer.cornerRadius = trackView.layer.cornerRadius }
+    }
+}
+
+open class TickView: UIView {
+    var numberTicks: Int = 0 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+
+    lazy var tickLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.strokeColor = UIColor.gray.cgColor
+        return layer
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        backgroundColor = .clear
+        layer.addSublayer(tickLayer)
+    }
+
+    @available(*, unavailable)
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        tickLayer.frame = bounds
+        print(bounds)
+        if numberTicks == 0 {
+            tickLayer.path = nil
+            return
+        }
+
+        let padding: CGFloat = 3.0
+        let stepWidth: CGFloat = bounds.width / CGFloat(numberTicks)
+        var height = bounds.height - 2 * padding
+        if height < 0 { height = 1 }
+
+        let path = UIBezierPath()
+        for i in 1 ..< numberTicks {
+            let x = CGFloat(i) * stepWidth
+            path.move(to: CGPoint(x: x, y: padding))
+            path.addLine(to: CGPoint(x: x, y: padding + height))
+        }
+        tickLayer.path = path.cgPath
     }
 }
