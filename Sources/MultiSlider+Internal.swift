@@ -143,6 +143,8 @@ extension MultiSlider {
     private func outerTrackView(constraining: NSLayoutConstraint.Attribute, to thumbView: UIView) -> UIView {
         let view = UIView()
         view.backgroundColor = outerTrackColor
+        view.layer.borderColor = outerTrackBorderColor?.cgColor ?? UIColor.clear.cgColor
+        view.layer.borderWidth = 1.0
         trackView.addConstrainedSubview(view, constrain: .top, .bottom, .left, .right)
         trackView.removeFirstConstraint { $0.firstItem === view && $0.firstAttribute == constraining }
         trackView.constrain(view, at: constraining, to: thumbView, at: .center(in: orientation))

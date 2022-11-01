@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         horizontalMultiSlider.hasRoundTrackEnds = true
         horizontalMultiSlider.showsThumbImageShadow = false
         horizontalMultiSlider.outerTrackColor = UIColor.lightGray
+        horizontalMultiSlider.outerTrackBorderColor = UIColor.red
         horizontalMultiSlider.tintColor = UIColor.blue.withAlphaComponent(0.5)
         horizontalMultiSlider.valueLabelPosition = .top
         // horizontalMultiSlider.valueLabelFont = LabelTheme.body.textStyle.scaledCustomFont()
