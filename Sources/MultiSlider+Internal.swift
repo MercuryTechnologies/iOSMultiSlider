@@ -346,7 +346,7 @@ open class TickView: UIView {
             return
         }
 
-        let padding: CGFloat = 3.0
+        let padding: CGFloat = 4.0
         let stepWidth: CGFloat = bounds.width / CGFloat(numberTicks)
         var height = bounds.height - 2 * padding
         if height < 0 { height = 1 }
