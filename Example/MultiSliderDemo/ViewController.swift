@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         let horizontalMultiSlider = MultiSlider()
+        horizontalMultiSlider.tickColor = UIColor.green
         horizontalMultiSlider.numberTicks = 6
         horizontalMultiSlider.minimumValue = 0
         horizontalMultiSlider.maximumValue = 6

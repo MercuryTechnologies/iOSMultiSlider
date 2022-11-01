@@ -121,6 +121,12 @@ open class MultiSlider: UIControl {
         }
     }
 
+    open var tickColor: UIColor = .gray {
+        didSet {
+            self.tickView.tickColor = tickColor
+        }
+    }
+
     open var numberTicks: Int = 0 {
         didSet {
             self.tickView.numberTicks = numberTicks

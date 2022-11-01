@@ -312,9 +312,16 @@ open class TickView: UIView {
         }
     }
 
+    lazy var tickColor: UIColor = .gray {
+        didSet {
+            tickLayer.strokeColor = tickColor.cgColor
+            setNeedsLayout()
+        }
+    }
+
     lazy var tickLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.strokeColor = UIColor.gray.cgColor
+        layer.strokeColor = self.tickColor.cgColor
         return layer
     }()
 
