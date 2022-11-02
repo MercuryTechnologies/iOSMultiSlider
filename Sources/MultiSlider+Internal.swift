@@ -340,7 +340,6 @@ open class TickView: UIView {
     override open func layoutSubviews() {
         super.layoutSubviews()
         tickLayer.frame = bounds
-        print(bounds)
         if numberTicks == 0 {
             tickLayer.path = nil
             return
