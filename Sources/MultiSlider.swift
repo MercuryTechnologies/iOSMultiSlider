@@ -259,6 +259,7 @@ open class MultiSlider: UIControl {
     // MARK: - Internals
 
     let slideView = UIView()
+    public let margin: CGFloat = 32
     let panGestureView = UIView()
     var isSettingValue = false
     lazy var defaultThumbImage: UIImage? = .circle()
@@ -276,12 +277,12 @@ open class MultiSlider: UIControl {
     }
 
     override open var intrinsicContentSize: CGSize {
-        let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? .zero
+        let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: margin, height: margin)
         switch orientation {
         case .vertical:
-            return CGSize(width: thumbSize.width, height: UIView.noIntrinsicMetric)
+            return CGSize(width: thumbSize.width + margin, height: UIView.noIntrinsicMetric)
         default:
-            return CGSize(width: UIView.noIntrinsicMetric, height: thumbSize.height)
+            return CGSize(width: UIView.noIntrinsicMetric, height: thumbSize.height + margin)
         }
     }
 
