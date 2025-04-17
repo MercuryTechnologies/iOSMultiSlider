@@ -31,7 +31,7 @@ extension MultiSlider {
     private func setupPanGesture() {
         addConstrainedSubview(panGestureView)
         for edge: NSLayoutConstraint.Attribute in [.top, .bottom, .left, .right] {
-            constrain(panGestureView, at: edge, diff: -edge.inwardSign * margin)
+            constrain(panGestureView, at: edge)
         }
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didDrag(_:)))
         panGesture.delegate = self
