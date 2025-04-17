@@ -6,7 +6,6 @@
 //  Copyright © 2016 Yonat Sharon. All rights reserved.
 //
 
-import SweeterSwift
 import UIKit
 
 @IBDesignable
@@ -261,7 +260,6 @@ open class MultiSlider: UIControl {
 
     let slideView = UIView()
     let panGestureView = UIView()
-    let margin: CGFloat = 32
     var isSettingValue = false
     lazy var defaultThumbImage: UIImage? = .circle()
     var selectionFeedbackGenerator = UISelectionFeedbackGenerator()
@@ -278,12 +276,12 @@ open class MultiSlider: UIControl {
     }
 
     override open var intrinsicContentSize: CGSize {
-        let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: margin, height: margin)
+        let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? .zero
         switch orientation {
         case .vertical:
-            return CGSize(width: thumbSize.width + margin, height: UIView.noIntrinsicMetric)
+            return CGSize(width: thumbSize.width, height: UIView.noIntrinsicMetric)
         default:
-            return CGSize(width: UIView.noIntrinsicMetric, height: thumbSize.height + margin)
+            return CGSize(width: UIView.noIntrinsicMetric, height: thumbSize.height)
         }
     }
 

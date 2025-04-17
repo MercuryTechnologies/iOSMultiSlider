@@ -10,11 +10,8 @@ let package = Package(
     products: [
         .library(name: "MultiSlider", targets: ["MultiSlider"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/yonat/SweeterSwift", from: "1.0.4"),
-    ],
     targets: [
-        .target(name: "MultiSlider", dependencies: ["SweeterSwift"], path: "Sources"),
+        .target(name: "MultiSlider", path: "Sources"),
     ],
     swiftLanguageVersions: [.v5]
 )
